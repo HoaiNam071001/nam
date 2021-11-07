@@ -1,6 +1,6 @@
 <header class="header">
     <div class="container header__container">
-        <a href="?controller=Menu" class="logo"><i class="fas fa-utensils"></i>POS</a>
+        <a href="?controller=Menu" class="logo"><i class="fas fa-cloud-meatball"></i> POS</a>
         <div class="icons">
             <a href="?controller=Menu">
                 <i class= "fas fa-home"></i>
