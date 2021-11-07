@@ -19,10 +19,12 @@
                     <button class="btn" style="width:80px;height:50px;">Xóa</button>
 
                 </div>
-                <a href="/Project/index.php?controller=Payment&id=<?= $val['IDCART'];?>" class="btn">PAYMENT</a>
+                <a href="index.php?controller=Payment&id=<?= $val['IDCART'];?>" class="btn">PAYMENT</a>
             </div>
         <?php
         }}
+
+        
         else {?>  <h4 style="font-size:30px; margin:auto;" class="item">Hiện tại không có đơn đặt hàng nào</h4> <?php } ?>
     </div>
 </section>
