@@ -9,7 +9,7 @@
             <a href="index.php?controller=Cart">
                 <i class="fas fa-shopping-cart"></i>
             </a>
-            <?= empty($_SESSION["Cart"])?0:count($_SESSION["Cart"]);?>
+            <span name="dish-in-cart"><?= empty($_SESSION["Cart"])?0:count($_SESSION["Cart"]);?></span>
             <?php } ?>
 
             <?php if(!empty($_SESSION["idmanager"])) { ?>

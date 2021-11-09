@@ -5,24 +5,6 @@ class CartController extends Controller{
     function show(){
         $this->callview("Home",["page"=>"Cart"]);
     }
-    # lưu món ăn đã chọn vào giỏ hàng
-    function store(){
-        $Iddish = $_GET["Id"];
-        $dish = $this->callmodel("DishDB");
-        $dish = $dish->getDish($Iddish);
-        if(empty($_SESSION['Cart'])){
-            $dish['Quantity']=1;
-            $_SESSION['Cart'][$Iddish]=$dish;
-        }
-        else if(!array_key_exists($Iddish,$_SESSION['Cart'])){
-            $dish['Quantity']=1;
-            $_SESSION['Cart'][$Iddish]=$dish;
-        }
-        else{
-            $_SESSION['Cart'][$Iddish]['Quantity'] += 1;
-        }
-        header('Location: index.php');
-    }
     # lưu thông tin đặt món vào CartDB
     function addCartDB(){
         $dish = $this->callmodel("CartDB");
@@ -41,6 +23,25 @@ class CartController extends Controller{
         }
         unset($_SESSION['Cart']);
         header('Location: index.php?controller=Cart&order=1');
+    }
+
+    # tang so luong cua mon an
+    function ReduceQuantity(){
+        if(isset($_POST['dish'])){
+            $_SESSION['Cart'][$_POST['dish']]['Quantity']--;
+            print_r(json_encode([$_SESSION['Cart'][$_POST['dish']]['Quantity'],$_SESSION['Cart'][$_POST['dish']]['PRICE']]));
+        }
+    }
+    # giam so luong cua mon an
+    function IncreaseQuantity(){
+        if(isset($_POST['dish'])){
+            $_SESSION['Cart'][$_POST['dish']]['Quantity']++;
+            print_r(json_encode([$_SESSION['Cart'][$_POST['dish']]['Quantity'],$_SESSION['Cart'][$_POST['dish']]['PRICE']]));
+        }
+    }
+    # xoa mon an khoi gio
+    function RemoveItem(){
+        unset($_SESSION['Cart'][$_POST['dish']]);
     }
 }
 ?>

@@ -1,3 +1,5 @@
+<script src="./public/js/Dish.js"></script>
+
 <section id="drinks" class="menu drinks">
     <div class="container">
         <h2 class="heading">FOOD</h2>
@@ -9,8 +11,9 @@
                 <h4><?= $val['DISHNAME'];?></h4>
                 <hr>
                 <div class="buy">
-                    <span class="price"><?= $val['PRICE'];?> VNĐ </span>
-                    <a href="index.php?controller=Cart&action=store&Id=<?= $val['IDDISH']?>" class="btn">Add To Cart</a>
+                    <span class="price"><?= $val['PRICE'];?> VNĐ </span>                    
+                    <button class="btn" id="giam" name="<?= $val['IDDISH']?>" onclick="Addtocart(name)">Add To Cart</button>
+
                 </div>
             </li>
         <?php }} ?>
@@ -26,7 +29,7 @@
                 <hr>
                 <div class="buy">
                     <span class="price"><?= $val['PRICE'];?> VNĐ </span>
-                    <a href="index.php?controller=Cart&action=store&Id=<?= $val['IDDISH']?>" class="btn">Add To Cart</a>
+                    <button class="btn" id="giam" name="<?= $val['IDDISH']?>" onclick="Addtocart(name)">Add To Cart</button>
                 </div>
             </li>
         <?php }} ?>
