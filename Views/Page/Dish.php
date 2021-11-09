@@ -1,6 +1,6 @@
 <script src="./public/js/Dish.js"></script>
 
-<section class="dish">
+<section class="dish" >
     <div class="overlay"></div>
         <div class="container">
             <div class="image">
@@ -12,7 +12,7 @@
                 <p class="field"><span class="title">Description:</span> <br>
                 <?= $data["dish"]['DESCRIP'];?>
                  </p>
-            <button class="btn" id="giam" name="<?= $data["dish"]['IDDISH']?>" onclick="Addtocart(name)">Add To Cart</button>
+            <button class="btn" name="<?= $data["dish"]['IDDISH']?>" onclick="Addtocart(name)">Add To Cart</button>
         </div>
     </div>
 </section>

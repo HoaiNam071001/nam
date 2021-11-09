@@ -7,10 +7,12 @@ class CartController extends Controller{
     }
     # lưu thông tin đặt món vào CartDB
     function addCartDB(){
-        $dish = $this->callmodel("CartDB");
+
+        $dish = $this->callmodel("CartDB");        
 
         if(empty($_SESSION['iduser'])){
-            $dish = $dish->addDB($_POST['fullname'],$_POST['phone']);
+            if(empty($_POST['fullname']) || empty($_POST['phone'])){ echo 0; return;}
+            $dish = $dish->addDB($_POST['fullname'],$_POST['phone'],$_POST['place']);
         }
         else {
             $user = $this->callmodel("UserDB");
@@ -19,10 +21,10 @@ class CartController extends Controller{
             while($s = mysqli_fetch_array($user, MYSQLI_ASSOC)){
                 $result = $s;
             }
-            $dish->addDB($result['FULLNAME'],$result['SDT']);
+            $dish->addDB($result['FULLNAME'],$result['SDT'],$_POST['place']);
         }
+        echo 1;
         unset($_SESSION['Cart']);
-        header('Location: index.php?controller=Cart&order=1');
     }
 
     # tang so luong cua mon an

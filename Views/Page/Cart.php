@@ -2,7 +2,6 @@
 <section class="cart">
   <div class="overlay"></div>
   <div class="container">
-    <?php if(!empty($_GET['order'])){?> <script>alert("Đơn hàng đã được gởi")</script> <?php } ?>
     <h4>
       <ion-icon name="cart-outline"></ion-icon>
       <span>Your Cart (<span name="dish-in-cart"><?= empty($_SESSION["Cart"])?0:count($_SESSION["Cart"])?></span>) </span>
@@ -24,21 +23,33 @@
       </div>
     <?php } ?>
     </div>
-    <form action="index.php?controller=Cart&action=addCartDB" method="POST">
+    <form id="carts">
     <?php if(empty($_SESSION['iduser']) && empty($_SESSION["idemp"]) && empty($_SESSION["idmanager"])){
       ?>
       <div style="margin:10px;">
         <label class="form-label">Họ và tên</label>
-        <input type="text" name="fullname" class="form-control" placeholder="Nhập họ và tên">
+        <input type="text" name="fullname" class="form-control" id="information1" placeholder="Nhập họ và tên">
       </div>
       <div>
         <label style="margin:5px;">Số điện thoại</label>
-        <input type="text" style="margin:5px;" name="phone" placeholder="Nhập số điện thoại">
-      </div>  <?php }
+        <input type="text" style="margin:5px;" name="phone" placeholder="Nhập số điện thoại" id="information2">
+      </div>
+      
+      <?php }
       if(empty($_SESSION["idemp"]) && empty($_SESSION["idmanager"])){ ?>
-        <button type="submit" class="btn">Order</btn>
+        <div id="selectListed">
+          <br>
+          <label style="margin:5px;">Chọn bàn</label>
+          <select id="selectList">
+            <option selected>Mang về</option>
+            <?php for($i=1;$i < 20;$i++){ ?>
+            <option ><?= $i; ?></option>
+            <?php } ?>
+          </select>
+        </div>
+        <input type="button" class="btn" id="ordersubmit" onclick="submitcart()" value="Order">
         <?php }
-      } else { ?> <h4 class="item">Không có sản phẩm nào trong giỏ</h4>  <?php }  ?>
+      } else { ?> <h4 class="item">There are no items in the cart</h4>  <?php }  ?>
     </form>
   </div>
 </section>

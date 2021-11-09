@@ -47,7 +47,34 @@ function deletedish(dishname){
     $("#"+dishname+"DISH").remove();
 }
 
-
-function Order(){
-    
+function submitcart(){
+    if($("#information1").val() && $("#information2").val()){
+        $.ajax({
+          url:"index.php?controller=Cart&action=addCartDB",
+          method: "POST",
+          data:{
+          "fullname": $("#information1").val(),
+          "phone": $("#information2").val(),
+          "place": $('#selectList :selected').text()
+          },
+          success:function(data){
+            location.reload();
+            alert("Đơn hàng đã được gửi.");
+          }
+        });
+      }
+      else{
+        $.ajax({
+          url:"index.php?controller=Cart&action=addCartDB",
+          method: "POST",
+          data:{
+          "place": $('#selectList :selected').text()
+          },
+          success:function(data){
+            if(data == 0){ alert("Vui lòng điền thông tin"); return;}
+            location.reload();
+            alert("Đơn hàng đã được gửi.");
+          }
+        });
+      }
 }
